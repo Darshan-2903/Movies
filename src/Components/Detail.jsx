@@ -1,37 +1,18 @@
-import React, {useEffect, useState} from 'react'
-import { useParams } from 'react-router-dom';
+import React from 'react'
+import { useLocation } from 'react-router-dom';
 
 const Detail = () => {
     
-    const [show,setShow]=useState();
-    const {id} = useParams()
-    const getdata = async()=>{
-        const response = await fetch('https://api.tvmaze.com/search/shows?q=all');
-        setShow(await response.json());
-        console.log(show);
-      }
-
-    useEffect(()=>{
-        getdata();
-      },[]); 
-
+  const location=useLocation();
 
   return (
     <>
     <div className='d-flex flex-row justify-content-around'>
-        {
-            // // if(id==item.show.id) {
-            //     show.map((item)=>{
-            //   return(
-            //     <div className='h-5 m-5'>
-            //     <img src={item.show.image.medium}/>
-            //   </div>
-            //   )
-            // })
-        
-        }
+        <div className='m-5'>
+          <img src={location.state.image}/>
+        </div>
        <div className='m-5'>
-          <p></p>
+          {location.state.summary}
        </div>
     </div>
     </>

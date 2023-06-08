@@ -17,20 +17,22 @@ const Movies = () => {
     getdata();
   },[]); 
 
-
+  
   return (
     <div className='container-fluid mt-2 text-bg-dark'>
         <div className=' text-center'>
             <div className='flex row justify-content-evenly'>
             {
                 show.map((item)=>{
+                  const curr_show=item.show;
                  return(
                     <div className="card mt-3 text-bg-dark" style={{width: '18rem'}}>
                 <img src={item.show.image.medium} className="card-img-top" alt="..."/>
                 <div className="card-body" key={item.show}>
                   <h5 className="card-title">{item.show.name}</h5>
                   <div onClick={()=>{
-                    <Link to={`/detail/${item.show.id}`}></Link>
+                    
+                    navigate('/detail',{state:{image:curr_show.image.medium,summary:curr_show.summary}});
                   }}><a className="btn btn-primary">Know more</a></div>
                 </div>
                  </div>
